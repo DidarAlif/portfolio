@@ -13,7 +13,7 @@ export default function GitHubNavbar() {
   const [activeDropdown, setActiveDropdown] = useState<DropdownType>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [hoveredTab, setHoveredTab] = useState<string | null>(null);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const { personal } = portfolioData;
 
@@ -24,7 +24,7 @@ export default function GitHubNavbar() {
       setTheme(storedTheme);
       document.documentElement.setAttribute("data-theme", storedTheme);
     } else {
-      document.documentElement.setAttribute("data-theme", "dark");
+      document.documentElement.setAttribute("data-theme", "light");
     }
   }, []);
 

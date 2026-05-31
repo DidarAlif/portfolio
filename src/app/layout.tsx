@@ -47,6 +47,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      data-theme="light"
       className={`${inter.variable} ${spaceGrotesk.variable} ${geistMono.variable} antialiased`}
     >
       <body className="bg-bg-primary text-text-primary selection:bg-accent-blue/30 selection:text-white">
