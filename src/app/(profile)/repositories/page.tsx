@@ -31,26 +31,33 @@ export default function RepositoriesPage() {
         
         if (Array.isArray(data) && data.length > 0) {
           // Map GitHub API response to our Repository interface
-          const mappedRepos: Repository[] = data.map((item: any) => ({
-            id: String(item.id),
-            name: item.name,
-            description: item.description || "No description provided.",
-            longDescription: item.description || "No description provided.",
-            language: item.language || "Shell",
-            languageColor: getLanguageColor(item.language),
-            techStack: item.language ? [item.language] : ["Shell"],
-            stars: item.stargazers_count,
-            forks: item.forks_count,
-            issues: item.open_issues_count,
-            watchers: item.watchers_count,
-            updated: formatUpdatedDate(item.updated_at),
-            github: item.html_url,
-            live: item.homepage || "",
-            pinned: false,
-            topics: item.topics || [],
-            visibility: item.private ? "Private" : "Public",
-            year: item.created_at ? item.created_at.substring(0, 4) : String(new Date(item.updated_at).getFullYear()),
-          }));
+          const mappedRepos: Repository[] = data.map((item: any) => {
+            // Find local override if it exists
+            const localOverride = fallbackRepos.find(
+              (r) => r.name.toLowerCase() === item.name.toLowerCase()
+            );
+
+            return {
+              id: String(item.id),
+              name: item.name,
+              description: localOverride?.description || item.description || "No description provided.",
+              longDescription: localOverride?.longDescription || item.description || "No description provided.",
+              language: item.language || "Shell",
+              languageColor: getLanguageColor(item.language),
+              techStack: localOverride?.techStack || (item.language ? [item.language] : ["Shell"]),
+              stars: item.stargazers_count,
+              forks: item.forks_count,
+              issues: item.open_issues_count,
+              watchers: item.watchers_count,
+              updated: formatUpdatedDate(item.updated_at),
+              github: item.html_url,
+              live: item.homepage || "",
+              pinned: localOverride?.pinned || false,
+              topics: item.topics && item.topics.length > 0 ? item.topics : (localOverride?.topics || []),
+              visibility: item.private ? "Private" : "Public",
+              year: item.created_at ? item.created_at.substring(0, 4) : String(new Date(item.updated_at).getFullYear()),
+            };
+          });
           setRepos(mappedRepos);
         } else {
           // If 0 repos, use fallback

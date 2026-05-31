@@ -169,6 +169,28 @@ export const portfolioData = {
 
   repositories: [
     {
+      id: "portfolio",
+      name: "portfolio",
+      description:
+        "Modern cybersecurity and system engineering portfolio website showcasing VAPT audits, enterprise networking, and custom tools.",
+      longDescription:
+        "A highly optimized, premium portfolio website showcasing cybersecurity engineering, VAPT audits, enterprise networking configurations, and system administration skills. Features interactive terminal navigation, real-time repository fetching, contribution charts, and direct contact system.",
+      language: "TypeScript",
+      languageColor: "#3178C6",
+      techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "React"],
+      stars: 1,
+      forks: 0,
+      issues: 0,
+      watchers: 1,
+      updated: "just now",
+      github: "https://github.com/DidarAlif/portfolio",
+      live: "https://me-didar.vercel.app",
+      pinned: true,
+      topics: ["nextjs", "typescript", "tailwindcss", "portfolio", "framer-motion"],
+      visibility: "Public",
+      year: "2026",
+    },
+    {
       id: "nfv-system",
       name: "nfv-system",
       description:
