@@ -150,9 +150,6 @@ export default function SkillsPage() {
   const [activeCategory, setActiveCategory] = useState<keyof typeof skills>(categories[0]);
 
   const totalSkills = Object.values(skills).flat().length;
-  const avgLevel = Math.round(
-    Object.values(skills).flat().reduce((sum, s) => sum + s.level, 0) / totalSkills
-  );
 
   return (
     <div className="space-y-6">
@@ -169,7 +166,6 @@ export default function SkillsPage() {
         <div className="flex gap-4 text-sm text-text-secondary">
           <span><strong className="text-text-primary">{totalSkills}</strong> skills</span>
           <span><strong className="text-text-primary">{categories.length}</strong> categories</span>
-          <span><strong className="text-text-primary">{avgLevel}%</strong> avg proficiency</span>
         </div>
       </motion.div>
 
@@ -205,7 +201,7 @@ export default function SkillsPage() {
         })}
       </motion.div>
 
-      {/* Skill bars Grid */}
+      {/* Skill Cards Grid */}
       <motion.div
         key={activeCategory}
         className="space-y-4"
@@ -216,35 +212,23 @@ export default function SkillsPage() {
         <div className="rounded-md border border-border-default bg-bg-primary p-6">
           <h3 className="mb-6 text-sm font-semibold text-text-primary">{activeCategory}</h3>
           
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {skills[activeCategory].map((skill, i) => (
               <motion.div
                 key={skill.name}
-                className="group flex flex-col"
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="group relative flex items-center gap-3 rounded-lg border border-border-default bg-bg-secondary/40 p-3 transition-all hover:border-accent-blue/30 hover:bg-accent-blue/5 hover:shadow-[0_0_15px_rgba(88,166,255,0.05)]"
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: i * 0.03 }}
+                whileHover={{ y: -2 }}
               >
-                <div className="mb-2 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    {getSkillIcon(skill.name)}
-                    <span className="text-sm font-semibold text-text-primary transition-colors group-hover:text-accent-blue">
-                      {skill.name}
-                    </span>
-                  </div>
-                  <span className="flex items-center justify-center h-6 w-6 rounded-md bg-bg-tertiary border border-border-default">
-                    {getSkillIcon(skill.name)}
-                  </span>
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-bg-tertiary border border-border-default group-hover:border-accent-blue/20 group-hover:bg-bg-primary transition-colors">
+                  {getSkillIcon(skill.name)}
                 </div>
-                
-                {/* Bar */}
-                <div className="relative h-2.5 overflow-hidden rounded-full bg-bg-tertiary">
-                  <motion.div
-                    className="absolute inset-y-0 left-0 rounded-full bg-gradient-to-r from-accent-blue to-accent-green"
-                    initial={{ width: 0 }}
-                    animate={{ width: `${skill.level}%` }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-                  />
+                <div className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-semibold text-text-primary transition-colors group-hover:text-accent-blue">
+                    {skill.name}
+                  </span>
                 </div>
               </motion.div>
             ))}

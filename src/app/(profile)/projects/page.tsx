@@ -185,7 +185,7 @@ export default function ProjectsPage() {
           project={{
             title: selectedProject.title,
             longDescription: selectedProject.description + "\n\nThis research/documentation repository contains my official findings, blueprints, and implementation scripts. The source code is organized following the highest defensive coding security policies to support system operations and robust deployments.",
-            techStack: selectedProject.tags,
+            techStack: selectedProject.techStack,
             github: `https://github.com/DidarAlif/${selectedProject.id}`,
             live: "",
             stats: { stars: 18, forks: 3, issues: 0 },
