@@ -22,7 +22,7 @@ export const portfolioData = {
     location: "Dhaka, Bangladesh",
     company: "AmberIT",
     email: "didarulalamalif@gmail.com",
-    website: "http://didarulalamalif.great-site.net/",
+    website: "",
     githubUsername: "DidarAlif",
     socials: {
       github: "https://github.com/DidarAlif",

@@ -277,14 +277,7 @@ export default function GitHubNavbar() {
             </AnimatePresence>
           </div>
 
-          {/* Avatar */}
-          <div className="relative">
-            <Link href="/" className="flex items-center rounded-full transition-opacity hover:opacity-80" aria-label="Profile">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full border border-border-default bg-bg-tertiary text-[10px] font-bold text-accent-blue" style={{ fontFamily: "var(--font-space-grotesk)" }}>
-                DAA
-              </div>
-            </Link>
-          </div>
+
 
           {/* Mobile hamburger */}
           <button
